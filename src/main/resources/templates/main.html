@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" src="/js/jquery-1.11.1.min_044d0927.js"></script>
+    <script type="text/javascript" src="/js/jquery.bxslider_e88acd1b.js"></script>
+    <th:block th:include="common.html :: source"></th:block>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+<th:block th:include="common.html :: category"></th:block>
+
+<div class="configHead">
+    <div class="i_bg bg_color">
+        <div class="i_ban_bg">
+            <div class="banner" style="width: 978px">
+                <div class="top_slide_wrap" style="width: 978px">
+                    <ul class="slide_box bxslider" style="width: 978px">
+                        <li><img src="/images/1.png" width="978" height="401" /></li>
+                        <li><img src="/images/2.png" width="978" height="401" /></li>
+                        <li><img src="/images/3.png" width="978" height="401" /></li>
+                    </ul>
+                    <div class="op_btns clearfix" style="width: 978px">
+                        <a href="#" class="op_btn op_prev"><span></span></a> <a href="#"
+                                                                                class="op_btn op_next"><span></span></a>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var jq2 = jQuery.noConflict();
+                (function() {
+                    $(".bxslider").bxSlider({
+                        auto : true,
+                        prevSelector : jq2(".top_slide_wrap .op_prev")[0],
+                        nextSelector : jq2(".top_slide_wrap .op_next")[0]
+                    });
+                })();
+            </script>
+        </div>
+    </div>
+
+    <!-- centrer -->
+    <div th:each="productCategory:${levelOneProductList}">
+        <div class="content mar_20">
+            <img th:src="'/images/banner'+${productCategoryStat.index}+'.png'" width="1200" />
+        </div>
+        <div class="i_t mar_10">
+            <span class="floor_num" th:text="${productCategory.name}"></span> <span class="fl" th:text="${productCategory.name}"></span>
+        </div>
+        <div class="content">
+            <div class="fresh_left">
+                <div class="fre_ban">
+                    <div id="imgPlay1" class="imgPlay1">
+                        <ul class="imgs" id="actor1">
+                            <li><a href="/"><img th:src="'/images/top'+${productCategoryStat.index}+'.png'" width="211"
+                            /></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="fresh_mid">
+                <ul>
+                    <li th:each="product:${productCategory.productList}">
+                        <div class="name">
+                            <a href="/" th:text="${product.name}"></a>
+                        </div>
+                        <div class="price">
+                            <font>￥<span th:text="${product.price}">206</span></font> &nbsp;
+                        </div>
+                        <div class="img">
+                            <a href="/">
+                                <img th:src="'/images/'+${product.fileName}" width="185"
+                                     height="155" />
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="fresh_right">
+                <ul>
+                    <li><a href="/"><img src="/images/12.png" height="220"
+                    /></a></li>
+                    <li><a href="/"><img src="/images/13.png" height="220"
+                                                           style="margin-top: 5px" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

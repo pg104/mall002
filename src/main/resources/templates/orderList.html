@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+
+<div class="i_bg bg_color">
+    <div class="m_content">
+
+        <div class="m_left">
+            <div class="left_n">管理中心</div>
+            <div class="left_m">
+                <div class="left_m_t t_bg1">订单中心</div>
+                <ul>
+                    <li><a href="#" >我的订单</a></li>
+                </ul>
+            </div>
+            <div class="left_m">
+                <div class="left_m_t t_bg2">会员中心</div>
+                <ul>
+                    <li><a href="/userInfo" >用户信息</a></li>
+                    <li><a href="/user/addressList" >地址管理</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="m_right" id="content">
+            <p></p>
+            <p></p>
+            <div class="mem_tit">订单列表</div>
+            <table border="0" class="order_tab"
+                   style="width: 930px; text-align: center; margin-bottom: 30px;"
+                   cellspacing="0" cellpadding="0">
+                <tbody>
+
+        <div th:each="orders:${orderList}">
+            <tr class="td_bg">
+                <td th:text="'用户名:'+${orders.loginName}"></td>
+                <td th:text="'订单号:'+${orders.serialnumber}"></td>
+                <td th:text="'地址:'+${orders.userAddress}"></td>
+                <td th:text="'￥'+${orders.cost}"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table border="0" class="order_tab"
+                           style="width: 930px; text-align: center; margin-bottom: 30px;"
+                           cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td width="20%">商品名称</td>
+                            <td width="20%">商品图片</td>
+                            <td width="25%">数量</td>
+                            <td width="25%">单价</td>
+                            <td width="25%">总价</td>
+                        </tr>
+
+                        <tr th:each="orderDetail:${orders.getOrderDetailVOList()}">
+                            <td th:text="${orderDetail.name}"></td>
+                            <td>
+                                <img th:src="'/images/'+${orderDetail.fileName}" width="50"
+                                     height="50">
+                            </td>
+                            <td th:text="${orderDetail.quantity}"></td>
+                            <td th:text="${orderDetail.price}"></td>
+                            <td th:text="${orderDetail.cost}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+        </div>
+
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

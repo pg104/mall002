@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+    <script type="text/javascript" src="/js/productDetail.js"></script>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+<th:block th:include="common.html :: category" ></th:block>
+
+<div class="i_bg">
+    <div class="postion">
+    </div>
+    <div class="content" style="margin-left: 390px">
+        <div id="tsShopContainer" style="float:left;">
+            <div id="tsImgS">
+                <img th:src="'/images/'+${product.fileName}" width="390" height="390" style="border:1px solid #EAEAEA;"/>
+            </div>
+        </div>
+        <div class="pro_des">
+            <div class="des_name">
+                <input type="hidden" value="1"  name="entityId" class="n_ipt"/>
+                <p th:text="${product.name}"></p>
+                “开业巨惠，北京专柜直供”，不光低价，“真”才靠谱！
+            </div>
+            <div class="des_price">
+                本店价格：<b th:text="${product.price}"></b><br/>
+            </div>
+            <div class="des_price">
+                库存：<b id="stock" th:text="${product.stock}">20</b><br/>
+            </div>
+            <div class="des_choice">
+                <span class="fl">型号选择：</span>
+                <ul>
+                    <li class="type checked">30ml
+                        <div class="ch_img"></div>
+                    </li>
+                    <li class="type">50ml
+                        <div class="ch_img"></div>
+                    </li>
+                    <li class="type">100ml
+                        <div class="ch_img"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="des_choice">
+                <span class="fl">颜色选择：</span>
+                <ul>
+                    <li class="color">红色
+                        <div class="ch_img"></div>
+                    </li>
+                    <li class="color checked">白色
+                        <div class="ch_img"></div>
+                    </li>
+                    <li class="color">黑色
+                        <div class="ch_img"></div>
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <br>
+            <div class="des_join">
+                <div class="j_nums">
+                    <input type="text" id="quantity"   value="1"  name="quantity" class="n_ipt"/>
+                    <input type="button" value="" onclick="increase()" class="n_btn_1"/>
+                    <input type="button" value="" onclick="reduce()" class="n_btn_2"/>
+                </div>
+                <input type="hidden" id="productId" value="1">
+                <input type="hidden" id="productPrice" value="1">
+                <span class="fl">
+                    <img src="/images/j_car.png" th:onclick="'addCart('+${product.id}+','+${product.price}+')'"/>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="content mar_20">
+        <div id="favoriteList">
+        </div>
+        <div class="l_list">
+            <div class="des_border">
+                <div class="des_tit">
+                    <ul>
+                        <li class="current"><a href="#p_attribute">商品属性</a></li>
+                        <li><a href="#p_details">商品详情</a></li>
+                    </ul>
+                </div>
+                <div class="des_con" id="p_attribute">
+                    <table border="0" align="center" style="width:100%; font-family:'宋体'; margin:10px auto;"
+                           cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td th:text="'商品名称:'+${product.name}"></td>
+                            <td th:text="'商品价格:'+${product.price}"></td>
+                            <td>品牌： 迪奥（Dior）</td>
+                            <td>上架时间：2015-09-06 09:19:09 </td>
+                        </tr>
+                        <tr>
+                            <td>商品毛重：160.00g</td>
+                            <td>商品产地：法国</td>
+                            <td>香调：果香调香型：淡香水/香露EDT</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>容量：1ml-15ml </td>
+                            <td>类型：女士香水，Q版香水，组合套装</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="des_border" id="p_details">
+                <div class="des_t">商品详情</div>
+                <div class="des_con">
+                    <table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td th:text="${product.description}"></td>
+                        </tr>
+                    </table>
+                    <p align="center">
+                        <img th:src="'/images/'+${product.fileName}" width="185" height="155">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

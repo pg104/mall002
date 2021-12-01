@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+
+<div class="i_bg bg_color">
+    <div class="m_content">
+
+        <div class="m_left">
+            <div class="left_n">管理中心</div>
+            <div class="left_m">
+                <div class="left_m_t t_bg1">订单中心</div>
+                <ul>
+                    <li><a href="/user/orderList" >我的订单</a></li>
+                </ul>
+            </div>
+            <div class="left_m">
+                <div class="left_m_t t_bg2">会员中心</div>
+                <ul>
+                    <li><a href="/userInfo" >用户信息</a></li>
+                    <li><a href="#" >地址管理</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="m_right">
+            <p></p>
+            <div class="mem_tit">资讯列表</div>
+            <table border="0" class="order_tab"
+                   style="width: 930px; text-align: center; margin-bottom: 30px;"
+                   cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td width="15%">地址编号</td>
+                    <td width="15%">具体信息</td>
+                    <td width="15%">创建时间</td>
+                    <td width="15%">备注</td>
+                    <td width="15%">默认地址</td>
+                    <td width="25%">操作</td>
+                </tr>
+
+                <tr th:each="address:${addressList}">
+                    <td th:text="${address.id}"></td>
+                    <td th:text="${address.address}"></td>
+                    <td th:text="${address.createTime}"></td>
+                    <td th:text="${address.remark}"></td>
+                    <td th:if="${address.isdefault == 1}">是</td>
+                    <td th:if="${address.isdefault == 0}">否</td>
+                    <td>
+                        <a href="">删除</a>
+                        <a href="">修改</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

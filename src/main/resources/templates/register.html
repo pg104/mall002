@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+</head>
+<body>
+<div class="log_bg">
+    <div class="top">
+        <div class="logo"></div>
+    </div>
+    <div class="regist">
+        <div class="log_img"><img src="/images/l_img.png" width="611" height="425"/></div>
+        <div class="reg_c">
+            <form id="register" action="/user/register" method="post">
+                <table border="0" style="width:420px; font-size:14px; margin-top:20px;" cellspacing="0" cellpadding="0">
+                    <tr height="50" valign="top">
+                        <td width="95">&nbsp;</td>
+                        <td>
+                            <span class="fl" style="font-size:24px;">注册</span>
+                            <span class="fr">已有商城账号，<a href="/login" style="color:#ff4e00;">我要登录</a></span>
+                        </td>
+                    </tr>
+                    <tr height="50">
+                        <td align="right"><font color="#ff4e00">*</font> &nbsp;登录用户名 &nbsp;</td>
+                        <td><input type="text" value="" name="loginName" class="l_user"  pattern="^[A-Za-z0-9]+$" title="用户名由字母和数字组成" required/></td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                        </td>
+                        <td>
+                            <span th:text="${userNameExists}" style="color: red;text-align: center"></span>
+                        </td>
+                    </tr>
+                    <tr height="50">
+                        <td align="right"><font color="#ff4e00">*</font>&nbsp;密码 &nbsp;</td>
+                        <td><input type="password" value="" name="password" class="l_pwd" pattern="^[a-zA-Z0-9]{6,10}$" title="密码由6-10位字母和数字组成" required/></td>
+                    </tr>
+                    <tr height="50">
+                        <td align="right"><font color="#ff4e00">*</font>&nbsp;真实姓名 &nbsp;</td>
+                        <td><input type="text" value="" name="userName" class="l_user" pattern="^[\u4e00-\u9fa5]+$" title="请输入正确的姓名" required/></td>
+                    </tr>
+                    <tr height="50">
+                        <td align="right"><font color="#ff4e00">*</font>&nbsp;性别 &nbsp;</td>
+                        <td>
+                            <input type="radio" name="gender" value="1" checked="checked">&nbsp;男&nbsp;&nbsp;
+                            <input type="radio" name="gender" value="0">&nbsp;女
+                        </td>
+                    </tr>
+                    <tr height="50">
+                        <td align="right">&nbsp;邮箱 &nbsp;</td>
+                        <td><input type="text" value="" name="email" class="l_email" pattern="^\w+@\w+(\.\w+){1,2}$" title="请输入正确的邮箱" required/></td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                        </td>
+                        <td>
+                            <span th:text="${emailError}" style="color: red;text-align: center"></span>
+                        </td>
+                    </tr>
+                    <tr height="50">
+                        <td align="right">&nbsp;手机 &nbsp;</td>
+                        <td><input type="text" value="" name="mobile" class="l_tel" pattern="^(13|15|18)\d{9}$" title="请输入正确的手机" required/></td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                        </td>
+                        <td>
+                            <span th:text="${mobileError}" style="color: red;text-align: center"></span>
+                        </td>
+                    </tr>
+                    <tr height="60">
+                        <td>&nbsp;</td>
+                        <td><input type="submit" value="立即注册" class="log_btn"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

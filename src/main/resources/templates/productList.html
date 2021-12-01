@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+<th:block th:include="common.html :: category"></th:block>
+
+<div class="i_bg">
+    <div class="content mar_20">
+        <div id="favoriteList"></div>
+        <div class="l_list">
+            <div class="list_c">
+                <ul class="cate_list">
+
+                    <li th:each="product:${productList}">
+                        <div class="name">
+                            <a th:href="'/product/detail/'+${product.id}" th:text="${product.name}"></a>
+                        </div>
+                        <div class="price">
+                            <font>￥<span th:text="${product.price}"></span></font> &nbsp;
+                        </div>
+                        <div class="img">
+                            <a th:href="'/product/detail/'+${product.id}">
+                                <img th:src="'/images/'+${product.fileName}" width="185"
+                                     height="155" />
+                            </a>
+                        </div>
+                        <div class="carbg">
+                            <a href="javascript:void(0);" class="ss" >收藏</a>
+                            <a href="javascript:void(0);" class="j_car" >加入购物车</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

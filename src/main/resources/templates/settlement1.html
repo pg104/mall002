@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+    <script type="text/javascript" src="/js/settlement.js"></script>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+
+<div class="i_bg">
+    <div id="settlement">
+
+        <div class="content mar_20">
+            <img src="/images/img1.jpg" />
+        </div>
+        <div class="content mar_20">
+            <table border="0" class="car_tab"
+                   style="width: 1200px; margin-bottom: 50px;" cellspacing="0"
+                   cellpadding="0">
+                <tr>
+                    <td class="car_th" width="200">商品名称</td>
+                    <td class="car_th" width="150">单价</td>
+                    <td class="car_th" width="150">购买数量</td>
+                    <td class="car_th" width="130">小计</td>
+                    <td class="car_th" width="150">操作</td>
+                </tr>
+
+                <tr class="goods" th:each="cart:${cartList}">
+                    <td>
+                        <div class="c_s_img">
+                            <a><img th:src="'/images/'+${cart.fileName}" width="73" height="73" /></a>
+                        </div>
+                        <div th:text="${cart.name}"></div>
+                    </td>
+                    <td align="center" style="color: #ff4e00;" id="price" th:text="${cart.price}"></td>
+                    <td align="center">
+                        <div class="c_num">
+                            <input type="hidden" class="productPrice" th:value="${cart.price}"/>
+                            <input type="hidden" class="productStock" th:value="${cart.stock}"/>
+                            <input type="button" value="" onclick="subQuantity(this)" class="car_btn_1" />
+                            <input type="text" th:value="${cart.quantity}" name="quantit" class="car_ipt" readonly="readonly" />
+                            <input type="button" value="" onclick="addQuantity(this);" class="car_btn_2" />
+                        </div>
+                    </td>
+                    <input type="hidden" class="id" th:value="${cart.id}" />
+                    <td align="center" style="color: #ff4e00;" class="qprice" th:text="'￥'+${cart.cost}"></td>
+                    <td align="center">
+                        <a href="javascript:void(0);"
+                           onclick="removeCart(this);" class="delete">删除</a></td>
+                </tr>
+
+
+                <tr height="70">
+                    <td colspan="6"
+                        style="font-family: 'Microsoft YaHei'; border-bottom: 0;"><span
+                            class="fr">商品总价：<b
+                            style="font-size: 22px; color: #ff4e00;" id="totalprice"></b></span></td>
+                </tr>
+                <tr valign="top" height="150">
+                    <td colspan="6" align="right">
+                        <!-- 继续购物 -->
+                        <a href="/"><img src="/images/buy1.gif" /></a> 
+                        <!-- 确认结算 -->
+                        <a href="javascript:void(0)" onclick="settlement2()"><img src="/images/buy2.gif" /></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

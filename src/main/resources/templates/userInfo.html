@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:include="common.html :: source"></th:block>
+</head>
+<body>
+
+<th:block th:include="common.html :: header"></th:block>
+
+<div class="i_bg bg_color">
+    <div class="m_content">
+
+        <div class="m_left">
+            <div class="left_n">管理中心</div>
+            <div class="left_m">
+                <div class="left_m_t t_bg1">订单中心</div>
+                <ul>
+                    <li><a href="/user/orderList" >我的订单</a></li>
+                </ul>
+            </div>
+            <div class="left_m">
+                <div class="left_m_t t_bg2">会员中心</div>
+                <ul>
+                    <li><a href="#" >用户信息</a></li>
+                    <li><a href="/userAddressList" >地址管理</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="m_right" id="content">
+            <div class="m_des">
+                <table border="0" style="width:870px; line-height:22px;" cellspacing="0" cellpadding="0">
+
+                    <tr valign="top">
+                        <td width="115"><img th:src="'/images/'+${session.user.fileName}" width="90" height="90" /></td>
+                        <td>
+                            <div class="m_user" th:text="${session.user.userName}"></div><br />
+                            <p>
+                                性别:
+                                <span th:if="${session.user.gender == 1}">男</span>
+                                <span th:if="${session.user.gender == 0}">女</span>
+                                <br /><br />
+                                邮箱:
+                                <span th:text="${session.user.email}"></span><br /><br />
+                                电话:
+                                <span th:text="${session.user.mobile}"></span><br /><br />
+                            </p>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="common.html :: footer"></th:block>
+<th:block th:include="common.html :: permit"></th:block>
+
+</body>
+</html>

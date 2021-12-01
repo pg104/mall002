@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pg.mapper.CartMapper">
+
+    <update id="update">
+        update cart set quantity = #{param2},cost = #{param3} where id = #{param1}
+    </update>
+
+    <select id="getCostByUserId" resultType="java.lang.Float">
+        select sum(cost) from cart where user_id = #{id}
+    </select>
+</mapper>
